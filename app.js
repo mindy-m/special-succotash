@@ -49,10 +49,14 @@ function respondWithHomePage(response) {
       <head>
         <title> Hot Diggity </title>
       </head>
-      <body>
-        <h1> Holy tamales Batman!! </h1>
-        <p> There are tamales <strong>everywhere</strong>... but <em>why??</em></p>
-        <p> ${hitCount} tamale${hitCount === 1 ? "" : "s"} ${hitCount === 1 ? "has" : "have"} been made here...</p>
+      <body style="font-family: 'Courier New', monospace; background-color: orchid">
+        <br>
+        <h1 style="font-size:46px"> Holy tamales Batman!! </h1>
+        <p style="font-size:22px">
+          <strong> There are tamales everywhere... but <em>why??</em></strong>
+        </p>
+        <p><strong>${hitCount} tamale${hitCount === 1 ? "" : "s"} ${hitCount === 1 ? "has" : "have"} been made here...</strong></p>
+        <br>
         ${petForm}
       </body>
     </html>
