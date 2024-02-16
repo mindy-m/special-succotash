@@ -1,0 +1,12 @@
+{
+  "name": "dockerlearn",
+  "version": "1.0.0",
+  "description": "learning docker with node api",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "docker-build": "docker build -t dockerlearn ."
+  },
+  "author": "Mindy the Magnificent",
+  "license": "ISC"
+}
