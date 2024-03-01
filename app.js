@@ -9,7 +9,7 @@ const petForm = `
   </form>
 `
 
-function respondWithError(response) {
+function respondWithBooyah(response) {
   hitCount++;
   response.writeHead(450, {
     "Content-Type": "application/json",
@@ -44,7 +44,7 @@ function respondWithHomePage(response) {
     "racoon-invasion-status": "the racoons have not yet invaded. we're safe.... for now."
   });
   response.end(`
-    <!doctype html />
+    <!doctype html>
     <html>
       <head>
         <title> Hot Diggity </title>
@@ -64,6 +64,19 @@ function respondWithHomePage(response) {
   console.log("How many tamales?\n\t", hitCount);
 }
 
+function respondWithError(response) {
+  errorCount++;
+  response.writeHead(451, {
+    "Content-Type": "application/json",
+    "racoon-invasion-status": "THE RACOONS ARE INVADING!! WE'RE ALL DOOOOMED!!"
+  });
+  response.end(
+    JSON.stringify({
+      message: `${errorCount} goat${errorCount === 1 ? "" : "s"} ${errorCount === 1 ? "has" : "have"} broken the law! The Feds are on their way to your house right now!!! ):<<<<`,
+      howIllegalIsThis: errorCount
+    })
+  );
+}
 
 const handleIncomingRequest = (request, response) => {
   console.log("what is request.url?\n\t", request.url);
@@ -72,21 +85,11 @@ const handleIncomingRequest = (request, response) => {
   } else if(request.url === "/frogs"){
     respondWithFrogs(response);
   } else if(request.url === "/booyah"){
-    respondWithError(response);
+    respondWithBooyah(response);
   } else if(request.url.startsWith("/submitPets")){
-    respondWithError(response);
+    respondWithBooyah(response);
   } else {
-    errorCount++;
-    response.writeHead(451, {
-      "Content-Type": "application/json",
-      "racoon-invasion-status": "THE RACOONS ARE INVADING!! WE'RE ALL DOOOOMED!!"
-    });
-    response.end(
-      JSON.stringify({
-        message: `${errorCount} goat${errorCount === 1 ? "" : "s"} ${errorCount === 1 ? "has" : "have"} broken the law! The Feds are on their way to your house right now!!! ):<<<<`,
-        howIllegalIsThis: errorCount
-      })
-    );
+    respondWithError(response);
   }
 };
 // Create a local server to receive data from
