@@ -64,6 +64,7 @@ function respondWithHomePage(response) {
   console.log("How many tamales?\n\t", hitCount);
 }
 
+// Remember to isolate units of work and stuff
 function respondWithError(response) {
   errorCount++;
   response.writeHead(451, {
@@ -78,6 +79,10 @@ function respondWithError(response) {
   );
 }
 
+function respondWithFormStuff(request, response) {
+
+}
+
 const handleIncomingRequest = (request, response) => {
   console.log("what is request.url?\n\t", request.url);
   if (request.url === "/") {
@@ -87,7 +92,7 @@ const handleIncomingRequest = (request, response) => {
   } else if(request.url === "/booyah"){
     respondWithBooyah(response);
   } else if(request.url.startsWith("/submitPets")){
-    respondWithBooyah(response);
+    respondWithFormStuff(response);
   } else {
     respondWithError(response);
   }
